@@ -1,3 +1,4 @@
+#!/bin/bash/python3
 import asyncio
 import time
 from typing import List, Dict
@@ -29,12 +30,14 @@ class Dag[T]:
 class Task1(Task[int]):
     key = "task1"
     async def run(self, context: Dict[str, str]) -> int:
+        # simulate complex task operation
         await asyncio.sleep(1)
         return 23
 
 class Task2(Task[int]):
     key = "task2"
     async def run(self, context: Dict[str, str]) -> int:
+        # simulate complex task operation
         await asyncio.sleep(1)
         return 3
 
@@ -42,12 +45,14 @@ class Task3(Task[int]):
     key = "task3"
     dependencies = [Task1, Task2]
     async def run(self, context: Dict[str, str]) -> int:
+        # simulate complex task operation
         await asyncio.sleep(1) 
         return context[Task1.key] + context[Task2.key]
 
 class Task4(Task[int]):
     dependencies = [Task2, Task3]
     async def run(self, context: Dict[str, str] -> str):
+        # simulate complex task operation
         await asyncio.sleep(1)
         return f"score: {context[Task3.key] + context[Task2.key]}"
 
